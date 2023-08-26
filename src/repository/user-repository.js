@@ -21,5 +21,16 @@ class UserRepository{
             throw error;
         }
     }
+    async getById(userId){
+        try {
+            const user =await User.findByPk(userId,{
+                attributes:['email','id']
+            });//we dont want userpassword to be exposed. We just want username to be found.
+            return user;
+        } catch (error) {
+            console.log("Something went wrong at repository layer in getById");
+            throw error;
+        }
+    }
 }
 module.exports=UserRepository;
