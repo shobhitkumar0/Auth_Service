@@ -28,7 +28,7 @@ const signIn =async(req,res)=>{
         const response =await userService.signIn(req.body.email,req.body.password);
         return res.status(200).json({
             success:true,
-            message:'successfully sign In',
+            message:'successfully signed in',
             data:response,
             err:{}
         });
