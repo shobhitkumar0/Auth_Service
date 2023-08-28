@@ -18,8 +18,8 @@ const prepareAndStartServer=()=>{
         // console.log("new token is  :",newToken);
         const token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNob2JoaXRAYWRtaW4uY29tICIsImlkIjoxLCJpYXQiOjE2OTMxNjQ5MTgsImV4cCI6MTY5MzE2ODUxOH0.XOBD6-9ZuExATuDFdBRSpAPxK7fz4Oywc5tLRId8AU4'
         // const repo =new UserRepository();
-        const response =service.verifyToken(token);
-        console.log(response );
+        // const
+        // e.log(response );
         // const response =  repo.getById(1);
         // console.log(response);
     });

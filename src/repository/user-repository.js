@@ -10,6 +10,14 @@ class UserRepository{
             throw error;
         }
     }
+    async signIn(data){
+        try {
+            
+        } catch (error) {
+            console.log("Something went wrong at signIN layer");
+            throw error;
+        }
+    }
     async destroy(userId){
         try {
             await User.destroy({where:{
@@ -29,6 +37,17 @@ class UserRepository{
             return user;
         } catch (error) {
             console.log("Something went wrong at repository layer in getById");
+            throw error;
+        }
+    }
+    async getByEmail(userEmail){
+        try {
+            const user=await User.findOne({where:{
+                email:userEmail
+            }});
+            return user;
+        } catch (error) {
+            console.log("Something went wrong at geeting user Id layer");
             throw error;
         }
     }
