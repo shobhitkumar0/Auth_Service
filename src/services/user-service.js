@@ -53,6 +53,22 @@ class UserService{
                 throw error;
         }
         }
+    isAuthenticated(token){
+        try {
+            const response=this.verifyToken(token);
+            if(!response){
+                throw{error:'Invalid Token'}
+            }
+            const user=this.userRepository.getById(response.id);
+            if(!user){
+                throw{error:'No user with the corresponding token exsists'};
+            }
+            return user.id;
+        } catch (error) {
+            console.log("something went wrong in service layer ( Token validation )",error);
+                throw error;
+        }
+    }    
     checkPassword(userInputPlainPassword,encryptedPassword){
         try {
             return bcrypt.compareSync(userInputPlainPassword,encryptedPassword);
