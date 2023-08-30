@@ -4,6 +4,8 @@ const {PORT}=require('./config/serverConfig');
 const UserService=require('./services/user-service');
 const UserRepository =require('./repository/user-repository');
 const apiRoutes =require('./routes/index');
+
+const db = require('./models/index');
 const app =express();
 const prepareAndStartServer=()=>{
 
@@ -13,10 +15,14 @@ const prepareAndStartServer=()=>{
     app.listen(PORT,()=>{
 
         console.log(`server started at PORT: ${PORT}`);
-        const service=new UserService();
+        if(process.env.DB_SYNC){
+            db.sequelize.sync({alert:true});
+        }
+        // const u1=await User
+        // const service=new UserService();
         // const newToken=service.createToken({email:'shobhit@admin.com ',id:1});
         // console.log("new token is  :",newToken);
-        const token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNob2JoaXRAYWRtaW4uY29tICIsImlkIjoxLCJpYXQiOjE2OTMxNjQ5MTgsImV4cCI6MTY5MzE2ODUxOH0.XOBD6-9ZuExATuDFdBRSpAPxK7fz4Oywc5tLRId8AU4'
+        // const token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNob2JoaXRAYWRtaW4uY29tICIsImlkIjoxLCJpYXQiOjE2OTMxNjQ5MTgsImV4cCI6MTY5MzE2ODUxOH0.XOBD6-9ZuExATuDFdBRSpAPxK7fz4Oywc5tLRId8AU4'
         // const repo =new UserRepository();
         // const
         // e.log(response );
