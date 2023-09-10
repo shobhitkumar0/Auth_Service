@@ -1,5 +1,5 @@
 const {User}=require('../models/index');
-
+const {Role}=require('../models/index')
 class UserRepository{
     async create(data){
         try {
@@ -48,6 +48,21 @@ class UserRepository{
             return user;
         } catch (error) {
             console.log("Something went wrong at geeting user Id layer");
+            throw error;
+        }
+    }
+    async isAdmin(userId){
+        try {
+            const user =await User.findByPk(userId); 
+            const adminRole =await Role.findOne({
+                where:{
+                name:'ADMIN'
+                }
+            });
+            console.log(adminRole);
+            return user.hasRole(adminRole);
+        } catch (error) {
+            console.log("Something went wrong at repository layer");
             throw error;
         }
     }
